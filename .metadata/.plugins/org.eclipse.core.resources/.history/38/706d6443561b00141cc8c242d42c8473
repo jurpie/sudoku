@@ -1,0 +1,14 @@
+
+public class Dog {
+	public String name;
+	
+	public D
+
+	void bark(){
+		System.out.print("woof ");
+	}
+	
+	void dig(){
+		System.out.print("lalala ");
+	}
+}
