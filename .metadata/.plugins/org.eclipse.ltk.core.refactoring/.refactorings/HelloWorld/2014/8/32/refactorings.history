@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename compilation unit &apos;dog.java&apos; to &apos;Dog.java&apos;&#x0D;&#x0A;- Original project: &apos;HelloWorld&apos;&#x0D;&#x0A;- Original element: &apos;dog.java&apos;&#x0D;&#x0A;- Renamed element: &apos;Dog.java&apos;" description="Rename compilation unit &apos;dog.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;{dog.java" name="Dog.java" references="false" stamp="1407101765164" version="1.0"/>
-</session>
