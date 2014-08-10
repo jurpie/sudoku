@@ -23,8 +23,16 @@ public class Cell {
 		return possibilities;
 	}
 	
-	public void setPossibilities(int i, boolean bool){
-		possibilities[i] = bool;
+	public void setPossibility(int index, boolean state){
+		possibilities[index - 1] = state;
+	}
+	
+	public void setPossibilities(boolean[] possibilities){
+		this.possibilities = possibilities;
+	}
+	
+	public boolean isPossible(int value){
+		return possibilities[value - 1];
 	}
 
 	public void maskPossibilities(boolean[] mask){
@@ -50,12 +58,14 @@ public class Cell {
 		return (possibilities == null);
 	}
 	
-	public void solve(){
+	public boolean solve(){
 		if(this.countPossibilities() == 1)
 		{
 			solution = 0;
 			while(!possibilities[solution++]);
 			possibilities = null;
+			return true;
 		}
+		return false;
 	}
 }
