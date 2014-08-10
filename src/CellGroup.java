@@ -16,7 +16,7 @@ public class CellGroup implements Iterable<Cell> {
 		
 		for(int i = 0; i < group.length; i++){
 			if (!group[i].isSolved()){
-				notPossible[group[i].getSolution()] = True;
+				notPossible[group[i].getSolution()] = true;
 			}
 		}
 		
