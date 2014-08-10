@@ -1,10 +1,12 @@
+import java.util.Iterator;
+
 public class CellIterator implements Iterator<Cell>{
 	int index;
 	Cell[] cells;
 	
-	public CellIterator(CellGroup cells){
+	public CellIterator(Cell[] cells){
 		index = 0;
-		this.cells = cells.toArray();
+		this.cells = cells;
 	}
 	
 	public boolean hasNext(){
@@ -12,7 +14,12 @@ public class CellIterator implements Iterator<Cell>{
 	}
 	
 	public Cell next(){
-		return Cell[index++];
+		return cells[index++];
+	}
+	
+	public void remove(){
+		System.err.println("CellIterator.remove(): DON'T USE ME O_O.");
+		throw new UnsupportedOperationException();
 	}
 }
 	

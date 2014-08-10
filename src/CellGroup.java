@@ -1,4 +1,6 @@
-public class CellGrid implements Iterable<Cell> {
+import java.util.Iterator;
+
+public class CellGroup implements Iterable<Cell> {
 	private Cell[] group;
 	
 	public CellGroup(Cell[] cells){
@@ -13,7 +15,7 @@ public class CellGrid implements Iterable<Cell> {
 		boolean[] notPossible = new boolean[9];
 		
 		for(int i = 0; i < group.length; i++){
-			group[i]
+			
 		}
 	}
 	
