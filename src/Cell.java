@@ -1,7 +1,3 @@
- /**
- * 
- */
-
 /**
  * @author Sherry
  *
@@ -52,5 +48,14 @@ public class Cell {
 	
 	public boolean isSolved(){
 		return (possibilities == null);
+	}
+	
+	public void solve(){
+		if(this.countPossibilities() == 1)
+		{
+			solution = 0;
+			while(!possibilities[solution++]);
+			possibilities = null;
+		}
 	}
 }
