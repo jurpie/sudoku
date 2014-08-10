@@ -27,7 +27,16 @@ public class Cell {
 		return possibilities;
 	}
 	
+	public void setPossibilities(int i, boolean bool){
+		possibilities[i] = bool;
+	}
 
+	public void maskPossibilities(boolean[] mask){
+		for (int i = 1; i <= 9; i++){
+			possibilities[i] = possibilities[i] && mask[i];
+		}
+	}
+	
 	public int getSolution(){
 		return solution;
 	}
