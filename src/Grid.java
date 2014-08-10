@@ -23,34 +23,34 @@ public class Grid{
 		this.grid = cells;
 	}
 	
-	public Cell[] getRow(int row){
-		return grid[row-1];
+	public CellGroup getRow(int row){
+		return new CellGroup(grid[row-1]);
 	}
 	
-	public Cell[] getCol(int col){
+	public CellGroup getCol(int col){
 		Cell[] column = new Cell[9];
 		for(int row = 0; row < 9; row++){
 			column[row] = grid[row][col-1];
 		}
-		return column;
+		return new CellGroup(column);
 	}
 	
-	public Cell[][] getBlock(int block){
+	public CellGroup getBlock(int block){
 		block -= 1;
 		int row = block / 3 + 1;
 		int col = block % 3 + 1;
 		return this.getBlock(row, col);
 	}
 	
-	public Cell[][] getBlock(int row, int col){
-		Cell[][] block = new Cell[3][3];
+	public CellGroup getBlock(int row, int col){
+		Cell[] block = new Cell[9];
 		row -= 1; col -= 1;
 		for(int rowI = 0; rowI < 3; rowI++){
 			for(int colI = 0; colI < 3; colI++){
-				block[rowI][colI] = grid[row + rowI][col + colI];
+				block[rowI + 3*colI] = grid[row + rowI][col + colI];
 			}
 		}
-		return block;
+		return new CellGroup(block);
 	}
 	
 	public Cell getCell(int row, int col){
