@@ -17,6 +17,7 @@ public class Grid{
 				}
 			}
 		}
+		kb.close();
 	}
 	
 	public Grid(Cell[][] cells){
