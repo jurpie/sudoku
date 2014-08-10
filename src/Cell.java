@@ -7,18 +7,29 @@
  *
  */
 public class Cell {
-	private int[] domain;
+
+	private boolean[] possibilities;
+	private int solution = 0;
+	private boolean solved;
 	
-	public int[] getDomain(){
-		return domain;
+	public Cell(){
+		possibilities = new boolean[9];
 	}
 	
-	private int solution = 0;
+	public Cell(int solution){
+		this.solution = solution;
+		solved = true;
+	}
+	
+	public boolean[] getPossibilities(){
+		return possibilities;
+	}
+	
+
 	public int getSolution(){
 		return solution;
 	}
 	
-	private boolean solved;
 	public boolean isSolved(){
 		return solved;
 	}

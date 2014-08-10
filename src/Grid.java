@@ -1,4 +1,3 @@
-import Cell;
 import java.util.Scanner;
 
 public class Grid{
@@ -7,12 +6,12 @@ public class Grid{
 	public Grid() {
 		Scanner kb = new Scanner(System.in);
 		for(int row = 0; row < 9; row++){
-			for int col = 0; col < 9; col++){
+			for (int col = 0; col < 9; col++){
 				boolean valid = false;
 				while(!valid){
 					System.out.print("Enter (" + (row + 1) + "," + (col + 1) + "): ");
-					grid[row][col] = kb.nextInt();
-					if(grid[row][col] > 9 || grid[row][col] < 1)
+					grid[row][col] = new Cell(kb.nextInt());
+					if(grid[row][col].getSolution() > 9 || grid[row][col].getSolution() < 1)
 						System.out.println("Invalid entry!");
 					else valid = true;
 				}
@@ -33,13 +32,14 @@ public class Grid{
 		for(int row = 0; row < 9; row++){
 			column[row] = grid[row][col-1];
 		}
+		return column;
 	}
 	
 	public Cell[][] getBlock(int block){
 		block -= 1;
 		int row = block / 3 + 1;
 		int col = block % 3 + 1;
-		this.getBlock(row, col)
+		return this.getBlock(row, col);
 	}
 	
 	public Cell[][] getBlock(int row, int col){
@@ -53,7 +53,7 @@ public class Grid{
 		return block;
 	}
 	
-	public Cell[] getCell(int row, int col){
+	public Cell getCell(int row, int col){
 		return grid[row-1][col-1];
 	}
 	
