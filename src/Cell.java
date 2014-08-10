@@ -1,7 +1,3 @@
- /**
- * 
- */
-
 /**
  * @author Sherry
  *
@@ -27,8 +23,16 @@ public class Cell {
 		return possibilities;
 	}
 	
-	public void setPossibilities(int i, boolean bool){
-		possibilities[i] = bool;
+	public void setPossibility(int index, boolean state){
+		possibilities[index - 1] = state;
+	}
+	
+	public void setPossibilities(boolean[] possibilities){
+		this.possibilities = possibilities;
+	}
+	
+	public boolean isPossible(int value){
+		return possibilities[value - 1];
 	}
 
 	public void maskPossibilities(boolean[] mask){
@@ -37,11 +41,31 @@ public class Cell {
 		}
 	}
 	
+	public int countPossibilities(){
+		int count = 0;
+		for(int i = 0; i < 9; i++){
+			if(possibilities[i])
+				count++;
+		}
+		return count;
+	}
+	
 	public int getSolution(){
 		return solution;
 	}
 	
 	public boolean isSolved(){
 		return (possibilities == null);
+	}
+	
+	public boolean solve(){
+		if(this.countPossibilities() == 1)
+		{
+			solution = 0;
+			while(!possibilities[solution++]);
+			possibilities = null;
+			return true;
+		}
+		return false;
 	}
 }

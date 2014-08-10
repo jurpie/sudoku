@@ -48,4 +48,27 @@ public class CellGroup implements Iterable<Cell> {
 		return new CellIterator(group);
 	}
 	
+	public void solveSingles(){
+		int[] valCount = new int[9];
+		for(Cell cell: this){
+			boolean[] poss = cell.getPossibilities();
+			for(int i = 0; i < 9; i++){
+				if(poss[i])
+					valCount[i]++;
+			}
+		}
+		for(int i = 0; i < 9; i++){
+			if(valCount[i] == 1){
+				for(Cell cell: this){
+					if(cell.isPossible(i+1)){
+						boolean[] newPoss = new boolean[9];
+						newPoss[i] = true;
+						cell.setPossibilities(newPoss);
+						cell.solve();
+					}
+				}
+			}
+		}
+	}
+	
 }

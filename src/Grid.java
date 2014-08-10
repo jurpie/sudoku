@@ -17,6 +17,7 @@ public class Grid{
 				}
 			}
 		}
+		kb.close();
 	}
 	
 	public Grid(Cell[][] cells){
@@ -72,4 +73,22 @@ public class Grid{
 		return true;
 	}
 	
+	public String toString(){
+		String output = ".-----------------------------------.\n| ";
+		for(int rownum = 1; rownum <= 9; rownum++){
+			for(Cell cell : this.getRow(rownum)){
+				if(cell.isSolved())
+					output += cell.getSolution();
+				else
+					output += " ";
+				output += " | ";
+			}
+			if(rownum != 9){
+				output += "|---|---|---|---|---|---|---|---|---|";
+				output += "\n| ";
+			}
+		}
+		output += "`-----------------------------------'";
+		return output;
+	}
 }
