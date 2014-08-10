@@ -2,9 +2,9 @@ public class CellIterator implements Iterator<Cell>{
 	int index;
 	Cell[] cells;
 	
-	public CellIterator(CellGroup cells){
+	public CellIterator(Cell[] cells){
 		index = 0;
-		this.cells = cells.toArray();
+		this.cells = cells;
 	}
 	
 	public boolean hasNext(){

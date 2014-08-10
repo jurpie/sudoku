@@ -1,4 +1,4 @@
-public class CellGrid implements Iterable<Cell> {
+public class CellGroup implements Iterable<Cell> {
 	private Cell[] group;
 	
 	public CellGroup(Cell[] cells){
@@ -9,12 +9,21 @@ public class CellGrid implements Iterable<Cell> {
 		group = new Cell[count];
 	}
 	
-	public boolean[] common_possibilities(){
+	public boolean[] commonPossibilities(){
 		boolean[] notPossible = new boolean[9];
 		
 		for(int i = 0; i < group.length; i++){
-			group[i]
+			if (!group[i].isSolved()){
+				notPossible[group[i].getSolution()] = True;
+			}
 		}
+		
+		boolean[] possible = new boolean[9];
+		for(int i = 0; i < 9; i++){
+			possible[i] = ! notPossible[i];
+		}
+		
+		return possible;		
 	}
 	
 	public Cell getCell(int number){
