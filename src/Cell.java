@@ -10,15 +10,17 @@ public class Cell {
 
 	private boolean[] possibilities;
 	private int solution = 0;
-	private boolean solved;
-	
+		
 	public Cell(){
 		possibilities = new boolean[9];
+		for (int i = 0; i < 9; i++){
+			possibilities[i] = true;
+		}
 	}
 	
 	public Cell(int solution){
 		this.solution = solution;
-		solved = true;
+		possibilities = null;
 	}
 	
 	public boolean[] getPossibilities(){
@@ -31,6 +33,6 @@ public class Cell {
 	}
 	
 	public boolean isSolved(){
-		return solved;
+		return (possibilities == null);
 	}
 }

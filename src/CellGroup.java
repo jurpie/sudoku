@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 public class CellGroup implements Iterable<Cell> {
 	private Cell[] group;
 	
