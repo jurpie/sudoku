@@ -16,7 +16,7 @@ public class CellGroup implements Iterable<Cell> {
 		
 		for(int i = 0; i < group.length; i++){
 			if (!group[i].isSolved()){
-				notPossible[group[i].getSolution()] = True;
+				notPossible[group[i].getSolution()] = true;
 			}
 		}
 		
@@ -34,6 +34,14 @@ public class CellGroup implements Iterable<Cell> {
 	
 	public Cell[] toArray(){
 		return group;
+	}
+	
+	public void updatePossibilities(){
+
+		boolean[] mask = commonPossibilities();
+		for (Cell cell : group){
+			cell.maskPossibilities(mask);
+		}
 	}
 	
 	public Iterator<Cell> iterator(){

@@ -19,29 +19,50 @@ public class Solver {
 		return solved;
 	}
 	
-	public void update_possibilities(){
+	public void updatePossibilities(){
 		for (int rownum = 1; rownum <=9; rownum++){
 			CellGroup row = grid.getRow(rownum);
-			boolean[] mask = row.commonPossibilities();
-			for (Cell cell : row){
-				cell.maskPossibilities(mask);
-			}
+			row.updatePossibilities();
 		}
 		
 		for (int colnum = 1; colnum <=9; colnum++){
 			CellGroup col = grid.getCol(colnum);
-			boolean[] mask = col.commonPossibilities();
-			for (Cell cell : col){
-				cell.maskPossibilities(mask);
-			}
+			col.updatePossibilities();
 		}
 		
 		for (int blocknum = 1; blocknum <=9; blocknum++){
 			CellGroup block = grid.getBlock(blocknum);
-			boolean[] mask = block.commonPossibilities();
-			for (Cell cell : block){
-				cell.maskPossibilities(mask);
+			block.updatePossibilities();
+		}
+	}
+	
+	public void solve_cells(){
+		for (int row = 1; row <= 9; row++){
+			for (int col = 1; col <= 9; row++){
+				Cell cell = grid.getCell(row, col);
+				if (cell.solve()){
+					grid.getRow(row).updatePossibilities();
+					grid.getCol(col).updatePossibilities();
+					grid.getBlock(row, col).updatePossibilities();
+				}
 			}
 		}
 	}
+	public void solve_groups(){
+		for (int rownum = 1; rownum <=9; rownum++){
+			CellGroup row = grid.getRow(rownum);
+			row.solveSingles();
+		}
+		
+		for (int colnum = 1; colnum <=9; colnum++){
+			CellGroup col = grid.getCol(colnum);
+			col.solveSingles();
+		}
+		
+		for (int blocknum = 1; blocknum <=9; blocknum++){
+			CellGroup block = grid.getBlock(blocknum);
+			block.solveSingles();
+		}
+	}
+	
 }
