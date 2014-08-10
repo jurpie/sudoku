@@ -40,7 +40,7 @@ public class CellGroup implements Iterable<Cell> {
 		return new CellIterator(group);
 	}
 	
-	public void findSingles(){
+	public void solveSingles(){
 		int[] valCount = new int[9];
 		for(Cell cell: this){
 			boolean[] poss = cell.getPossibilities();
