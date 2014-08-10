@@ -37,6 +37,15 @@ public class Cell {
 		}
 	}
 	
+	public int countPossibilities(){
+		int count = 0;
+		for(int i = 0; i < 9; i++){
+			if(possibilities[i])
+				count++;
+		}
+		return count;
+	}
+	
 	public int getSolution(){
 		return solution;
 	}
