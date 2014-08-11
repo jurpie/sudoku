@@ -11,7 +11,10 @@ public class SudokuMain {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("Hello World!");
+		Grid grid = new Grid();
+		Solver sudokuSolver = new Solver(grid);
+		System.out.print(grid);
+		sudokuSolver.solve();
 	}
 
 }

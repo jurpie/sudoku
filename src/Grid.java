@@ -9,14 +9,26 @@ public class Grid{
 		Scanner kb = new Scanner(System.in);
 		for(int row = 0; row < 9; row++){
 			for (int col = 0; col < 9; col++){
-				boolean valid = false;
-				while(!valid){
+				boolean first = true;
+				int input;
+				do{
+					if(first)
+						first = false;
+					else
+						System.out.println("Invalid Entry!");
+					
 					System.out.print("Enter (" + (row + 1) + "," + (col + 1) + "): ");
-					grid[row][col] = new Cell(kb.nextInt());
-					if(grid[row][col].getSolution() > 9 || grid[row][col].getSolution() < 1)
-						System.out.println("Invalid entry!");
-					else valid = true;
-				}
+					input = kb.nextInt();
+				} while (input > 9 || input < 0);
+				
+				
+				if(input == 0)
+					grid[row][col] = new Cell();
+				else
+					grid[row][col] = new Cell(input);
+
+
+				
 			}
 		}
 		kb.close();
@@ -97,11 +109,11 @@ public class Grid{
 				output += " | ";
 			}
 			if(rownum != 9){
-				output += "|---|---|---|---|---|---|---|---|---|";
+				output += "\n|---|---|---|---|---|---|---|---|---|";
 				output += "\n| ";
 			}
 		}
-		output += "`-----------------------------------'";
+		output += "\n`-----------------------------------'";
 		return output;
 	}
 }
