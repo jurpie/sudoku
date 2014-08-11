@@ -59,6 +59,7 @@ public class Cell {
 	}
 	
 	public boolean solve(){
+		Grid.changed = true;
 		if(this.countPossibilities() == 1)
 		{
 			solution = 0;

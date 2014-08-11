@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
 public class Grid{
+	public static boolean changed = false;
+	
 	Cell[][] grid = new Cell[9][9];
 	
 	public Grid() {
@@ -63,6 +65,17 @@ public class Grid{
 		int row = num / 9;
 		int col = num % 9;
 		return grid[row][col];
+	}
+	
+	public boolean equals(Grid grid){
+		for (int row = 1; row <= 9; row++){
+			for (int col = 1; col <= 9; col++){
+				if (this.getCell(row, col) != grid.getCell(row, col)){
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 	
 	public boolean isSolved()

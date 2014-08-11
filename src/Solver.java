@@ -6,17 +6,21 @@
  * @author Sherry
  *
  */
+
 public class Solver {
-	 
 	private Grid grid;
 	
 	public Solver (Grid grid){
 		this.grid = grid;
 	}
 	
-	public boolean solve(){
-		boolean solved = false;
-		return solved;
+	public void solve(){		
+		do{
+
+			updatePossibilities();
+			solveCells();
+			solveGroups();
+		} while (!grid.isSolved() && Grid.changed);
 	}
 	
 	public void updatePossibilities(){
@@ -36,7 +40,7 @@ public class Solver {
 		}
 	}
 	
-	public void solve_cells(){
+	public void solveCells(){
 		for (int row = 1; row <= 9; row++){
 			for (int col = 1; col <= 9; row++){
 				Cell cell = grid.getCell(row, col);
@@ -48,7 +52,7 @@ public class Solver {
 			}
 		}
 	}
-	public void solve_groups(){
+	public void solveGroups(){
 		for (int rownum = 1; rownum <=9; rownum++){
 			CellGroup row = grid.getRow(rownum);
 			row.solveSingles();
@@ -64,5 +68,4 @@ public class Solver {
 			block.solveSingles();
 		}
 	}
-	
 }

@@ -37,7 +37,7 @@ public class CellGroup implements Iterable<Cell> {
 	}
 	
 	public void updatePossibilities(){
-
+		Grid.changed = true;
 		boolean[] mask = commonPossibilities();
 		for (Cell cell : group){
 			cell.maskPossibilities(mask);
@@ -49,6 +49,7 @@ public class CellGroup implements Iterable<Cell> {
 	}
 	
 	public void solveSingles(){
+		Grid.changed = true;
 		int[] valCount = new int[9];
 		for(Cell cell: this){
 			boolean[] poss = cell.getPossibilities();
