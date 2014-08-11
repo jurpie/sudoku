@@ -12,10 +12,11 @@ public class Solver {
 	
 	public void solve(){		
 		do{
-
+			Grid.changed = false;
 			updatePossibilities();
 			solveCells();
 			solveGroups();
+			System.out.print(grid);			
 		} while (!grid.isSolved() && Grid.changed);
 	}
 	
@@ -38,12 +39,12 @@ public class Solver {
 	
 	public void solveCells(){
 		for (int row = 1; row <= 9; row++){
-			for (int col = 1; col <= 9; row++){
+			for (int col = 1; col <= 9; col++){
 				Cell cell = grid.getCell(row, col);
 				if (cell.solve()){
 					grid.getRow(row).updatePossibilities();
 					grid.getCol(col).updatePossibilities();
-					grid.getBlock(row, col).updatePossibilities();
+					grid.getBlock((row-1)/3 + 1, (col-1)/3 + 1).updatePossibilities();
 				}
 			}
 		}

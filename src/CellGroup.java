@@ -15,8 +15,8 @@ public class CellGroup implements Iterable<Cell> {
 		boolean[] notPossible = new boolean[9];
 		
 		for(int i = 0; i < group.length; i++){
-			if (!group[i].isSolved()){
-				notPossible[group[i].getSolution()] = true;
+			if (group[i].isSolved()){
+				notPossible[group[i].getSolution() - 1] = true;
 			}
 		}
 		
@@ -37,10 +37,10 @@ public class CellGroup implements Iterable<Cell> {
 	}
 	
 	public void updatePossibilities(){
-		Grid.changed = true;
 		boolean[] mask = this.commonPossibilities();
 		for (Cell cell : group){
-			cell.maskPossibilities(mask);
+			if(!cell.isSolved())
+				cell.maskPossibilities(mask);
 		}
 	}
 	
@@ -49,27 +49,40 @@ public class CellGroup implements Iterable<Cell> {
 	}
 	
 	public void solveSingles(){
-		Grid.changed = true;
 		int[] valCount = new int[9];
 		for(Cell cell: this){
-			boolean[] poss = cell.getPossibilities();
-			for(int i = 0; i < 9; i++){
-				if(poss[i])
-					valCount[i]++;
+			if(cell.isSolved())
+			{
+				valCount[cell.getSolution() - 1] = -99;
+			}
+			else{
+				boolean[] poss = cell.getPossibilities();
+				for(int i = 0; i < 9; i++){
+					if(poss[i])
+						valCount[i]++;
+				}
 			}
 		}
 		for(int i = 0; i < 9; i++){
 			if(valCount[i] == 1){
 				for(Cell cell: this){
-					if(cell.isPossible(i+1)){
-						boolean[] newPoss = new boolean[9];
-						newPoss[i] = true;
-						cell.setPossibilities(newPoss);
-						cell.solve();
+					if(!cell.isSolved() && cell.isPossible(i+1)){
+						cell.solve(i+1);
 					}
 				}
 			}
 		}
+	}
+	public String toString(){
+		String output = "CellGroup: ";
+		for(Cell cell : this){
+			if(!cell.isSolved())
+				output += ".";
+			else{
+				output += cell.getSolution();
+			}
+		}
+		return output;
 	}
 	
 }

@@ -42,12 +42,17 @@ public class Cell {
 	}
 	
 	public int countPossibilities(){
-		int count = 0;
-		for(int i = 0; i < 9; i++){
-			if(possibilities[i])
-				count++;
+		if(!this.isSolved())
+		{
+			int count = 0;
+			for(int i = 0; i < 9; i++){
+				if(possibilities[i])
+					count++;
+			}
+			return count;
 		}
-		return count;
+		else
+			return 0;
 	}
 	
 	public int getSolution(){
@@ -59,14 +64,21 @@ public class Cell {
 	}
 	
 	public boolean solve(){
-		Grid.changed = true;
 		if(this.countPossibilities() == 1)
 		{
+			Grid.changed = true;
 			solution = 0;
 			while(!possibilities[solution++]);
 			possibilities = null;
 			return true;
 		}
 		return false;
+	}
+	
+	public boolean solve(int solution){
+		Grid.changed = true;
+		this.possibilities = null;
+		this.solution = solution;
+		return true;
 	}
 }

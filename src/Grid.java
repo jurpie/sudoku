@@ -21,17 +21,25 @@ public class Grid{
 					input = kb.nextInt();
 				} while (input > 9 || input < 0);
 				
-				
 				if(input == 0)
 					grid[row][col] = new Cell();
 				else
-					grid[row][col] = new Cell(input);
-
-
-				
+					grid[row][col] = new Cell(input);				
 			}
 		}
 		kb.close();
+	}
+	
+	public Grid(String input){
+		for(int row = 0; row < 9; row++){
+			for (int col = 0; col < 9; col++){
+				int nextInt = Integer.parseInt(String.valueOf(input.charAt(row * 9  + col)));
+				if(nextInt == 0)
+					grid[row][col] = new Cell();
+				else
+					grid[row][col] = new Cell(nextInt);
+			}
+		}
 	}
 	
 	public Grid(Cell[][] cells){
@@ -60,6 +68,7 @@ public class Grid{
 	public CellGroup getBlock(int row, int col){
 		Cell[] block = new Cell[9];
 		row -= 1; col -= 1;
+		row *= 3; col *= 3;
 		for(int rowI = 0; rowI < 3; rowI++){
 			for(int colI = 0; colI < 3; colI++){
 				block[rowI + 3*colI] = grid[row + rowI][col + colI];
@@ -113,7 +122,7 @@ public class Grid{
 				output += "\n| ";
 			}
 		}
-		output += "\n`-----------------------------------'";
+		output += "\n`-----------------------------------'\n";
 		return output;
 	}
 }

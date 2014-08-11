@@ -10,8 +10,8 @@ public class SudokuMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Grid grid = new Grid();
+		final String start = "060002000004105000005000984307008050000000000050700203473000600000807300000200040";
+		Grid grid = new Grid(start);
 		Solver sudokuSolver = new Solver(grid);
 		System.out.print(grid);
 		sudokuSolver.solve();
