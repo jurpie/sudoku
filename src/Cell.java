@@ -36,7 +36,7 @@ public class Cell {
 	}
 
 	public void maskPossibilities(boolean[] mask){
-		for (int i = 1; i <= 9; i++){
+		for (int i = 0; i < 9; i++){
 			possibilities[i] = possibilities[i] && mask[i];
 		}
 	}

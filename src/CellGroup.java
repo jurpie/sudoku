@@ -38,7 +38,7 @@ public class CellGroup implements Iterable<Cell> {
 	
 	public void updatePossibilities(){
 		Grid.changed = true;
-		boolean[] mask = commonPossibilities();
+		boolean[] mask = this.commonPossibilities();
 		for (Cell cell : group){
 			cell.maskPossibilities(mask);
 		}
