@@ -108,21 +108,28 @@ public class Grid{
 	}
 	
 	public String toString(){
-		String output = ".-----------------------------------.\n| ";
+		String output = "╔═══╤═══╤═══╦═══╤═══╤═══╦═══╤═══╤═══╗\n║ ";
 		for(int rownum = 1; rownum <= 9; rownum++){
-			for(Cell cell : this.getRow(rownum)){
+			for(int colnum = 1; colnum <= 9; colnum++){
+				Cell cell = this.getCell(rownum, colnum);
 				if(cell.isSolved())
 					output += cell.getSolution();
 				else
 					output += " ";
-				output += " | ";
+				if(colnum%3 != 0)
+					output += " │ ";
+				else
+					output += " ║ ";
 			}
 			if(rownum != 9){
-				output += "\n|---|---|---|---|---|---|---|---|---|";
-				output += "\n| ";
+				if(rownum%3 != 0)
+					output += "\n╟───┼───┼───╫───┼───┼───╫───┼───┼───╢";
+				else
+					output += "\n╠═══╪═══╪═══╬═══╪═══╪═══╬═══╪═══╪═══╣";
+				output += "\n║ ";
 			}
 		}
-		output += "\n`-----------------------------------'\n";
+		output += "\n╚═══╧═══╧═══╩═══╧═══╧═══╩═══╧═══╧═══╝\n";
 		return output;
 	}
 }
